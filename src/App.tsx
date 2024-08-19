@@ -12,12 +12,12 @@ export interface UserType{
 function App() {
   const [users, setUsers] = useState<UserType[]>([])
 
-  function handleAddUsers(){
+  function handleAddUsers(username:string,email:string){
     setUsers((prevUser)=>{
       const newUser:UserType={
         id:Math.random(),
-        username:"user 1",
-        email:"sadri@gmail.com"
+        username,
+        email
       }
 
       return[...prevUser,newUser]
@@ -31,7 +31,7 @@ function App() {
   return (
 <>
 <div className="py-4 text-center">
-<AddUser/>
+<AddUser onAddUser={handleAddUsers}/>
 </div>
    <UserList users={users} deleteUser={handleDeleteUser}/>
 </>

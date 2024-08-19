@@ -1,6 +1,10 @@
 import { FormEvent, useRef } from "react";
 
-export default function AddUser() {
+type AddUserProps={
+onAddUser:(username:string,email:string)=>void
+}
+
+export default function AddUser({onAddUser}:AddUserProps) {
   const username=useRef<HTMLInputElement>(null)
   const email=useRef<HTMLInputElement>(null)
   function handleSubmit(e:FormEvent<HTMLFormElement>) {
@@ -10,9 +14,10 @@ export default function AddUser() {
     // const formData=new FormData(e.currentTarget)
     // const userName=formData.get("username")
     // const email=formData.get("email")
-
-    console.log(newUsername,newEmail)
-    // console.log(userName,email)
+    onAddUser(newUsername,newEmail)
+    e.currentTarget.reset()
+    // console.log(newUsername,newEmail)
+    // console.log(userName,email)s
   }
   return (
     <form
